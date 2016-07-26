@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.dw.helloword.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="结果显示："/>
+
+            <TextView
+                android:id="@+id/tv_check_result"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/result_textview_shape"/>
+    <Button
+        android:id="@+id/btn_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="创建文件"
+        />
+
+    <Button
+        android:id="@+id/btn_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="创建文件夹"/>
+
+
+    <Button
+        android:id="@+id/btn_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除文件"/>
+
+    <Button android:id="@+id/btn_four"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除文件夹"/>
+
+    <Button android:id="@+id/btn_create_db"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="创建数据库"/>
+
+    <Button android:id="@+id/btn_delete_db"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除数据库"/>
+
+    <Button
+        android:id="@+id/btn_write_to_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="文件数据写入"/>
+
+    <Button
+        android:id="@+id/btn_read_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="文件数据读取"/>
+
+    <Button android:id="@+id/btn_choose_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开文件选择器"/>
+
+
+            <Button
+                android:id="@+id/btn_read_show_contacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="读取显示手机联系人"/>
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!--
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"></LinearLayout>-->
+</LinearLayout>
