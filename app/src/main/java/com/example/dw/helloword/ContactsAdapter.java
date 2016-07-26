@@ -69,8 +69,15 @@ public class ContactsAdapter extends BaseAdapter {
             }else{
                     convertView=LayoutInflater.from(context).inflate(R.layout.gray_view_divider,null);
             TextView tvSortOrder=(TextView)convertView.findViewById(R.id.tv_letter_sort_order);
-            String  str=listName.get(position).order+"";
-            tvSortOrder.setText(str);
+            String str;
+            if(listName.get(position).order!=1000) {
+                 str = listName.get(position).order + "";
+            }
+            else{
+                 str="#";
+            }
+                tvSortOrder.setText(str);
+
         }
 
         return convertView;
@@ -79,7 +86,7 @@ public class ContactsAdapter extends BaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        if(listName.get(position).name!="#")
+        if(listName.get(position).name!="$")
         return TYPE_ITEM;
         else
             return TYPE_DIVIDER;
