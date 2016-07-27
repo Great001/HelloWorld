@@ -63,23 +63,25 @@ public class ContactsActivity extends AppCompatActivity {
     void SortAccordingFirstLetter(Cursor cursor) {
         int nameIndex = -1, numberIndex = -1;
         if (cursor.getCount() > 0) {
-            System.out.println("数据记录数目：" + cursor.getCount());
             nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
             numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
         }
-        
+
         int count;
         char first = 0;
         while (cursor.moveToNext()) {
+
             String number = cursor.getString(numberIndex);
             String name = cursor.getString(nameIndex);
             Name contactName = new Name();
-            if (name != null) {
-                char firstChar = name.charAt(0);
 
+            count = mListName.size();
+
+            char firstChar;
+            if (name != null) {
+                 firstChar = name.charAt(0);
                 if (firstChar >= 65 && firstChar <= 90) {
                     first = String.valueOf(firstChar).toLowerCase().charAt(0);
-                    System.out.println(first);
 
                 } else if (firstChar >= 97 && firstChar <= 122) {
                     first = firstChar;
@@ -91,37 +93,46 @@ public class ContactsActivity extends AppCompatActivity {
                         first = PyName.charAt(0);
                     }
                 }
+
                 contactName.order = first;
                 contactName.name = name;
-                count = mListName.size();
-                if (count == 0) {
-                    mListName.add(contactName);
-                    mListNumber.add(number);
+            if (count==0) {
+                Name emptyName = new Name();
+                emptyName.order = contactName.order;
+                emptyName.name = "$";
+                mListName.add(emptyName);
+                mListNumber.add(0, "$");
+                mListName.add(contactName);
+                mListNumber.add(number);
+            } else {
+                int i;
+                for (i = count-1; i >= 0; i--) {
+                    if (first >= mListName.get(i).order) {
+                        mListName.add(i+1 , contactName);
+                        mListNumber.add(i+1, number);
+                        if (mListName.get(i).order != contactName.order) {
+                            Name emptyName = new Name();
+                            emptyName.order = contactName.order;
+                            emptyName.name = "$";
+                            mListName.add(i+1 , emptyName);
+                            mListNumber.add(i+1, "$");
+                        }
+                        break;
+                    }
+                }
+                if(i==-1){
+                    mListName.add(0,contactName);
+                    mListNumber.add(0,number);
                     Name emptyName = new Name();
                     emptyName.order = contactName.order;
                     emptyName.name = "$";
-                    mListName.add(0, emptyName);
+                    mListName.add(0 , emptyName);
                     mListNumber.add(0, "$");
-                } else {
-                    for (int i = count - 1; i >= 0; i--) {
-                        if (first >= mListName.get(i).order) {
-                            mListName.add(i + 1, contactName);
-                            mListNumber.add(i + 1, number);
-                            if (mListName.get(i).order != contactName.order) {
-                                Name emptyName = new Name();
-                                emptyName.order = contactName.order;
-                                emptyName.name = "$";
-                                mListName.add(i + 1, emptyName);
-                                mListNumber.add(i + 1, "$");
-                            }
-                            break;
-                        }
-                    }
                 }
             }
+        }
 
     }
-        System.out.println("实际数目："+mListNumber.size());
     }
 
 
