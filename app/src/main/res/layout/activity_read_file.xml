@@ -9,10 +9,5 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.dw.helloword.ReadFileActivity">
 
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
 
 </RelativeLayout>

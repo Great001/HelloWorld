@@ -20,8 +20,6 @@ public class ReadFileActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_file);
 
-        mTvResult=(TextView)findViewById(R.id.tv_result);
-
         try {
             String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "good.txt";
             InputStreamReader reader = new InputStreamReader(new FileInputStream(path));
@@ -31,7 +29,6 @@ public class ReadFileActivity extends Activity {
             Intent intent=new Intent();
             intent.putExtra("result",str.toString());
             setResult(11,intent);
-            mTvResult.setText(str);
         }catch (IOException exception){}
 
 

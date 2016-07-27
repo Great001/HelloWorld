@@ -8,6 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="@color/like_green"
     tools:context="com.example.dw.helloword.MainActivity">
 
     <ScrollView
@@ -34,59 +35,100 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="创建文件"
+        android:textSize="20dp"
+        android:background="@color/btn_bg_color"
+        android:textColor="@color/white"
+
         />
 
     <Button
         android:id="@+id/btn_two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="创建文件夹"/>
+        android:text="创建文件夹"
+        android:textSize="20dp"
+        android:background="@color/btn_bg_color"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+      />
 
 
     <Button
         android:id="@+id/btn_three"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="删除文件"/>
+        android:text="删除文件"
+        android:textSize="20dp"
+        android:background="@color/btn_bg_color"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"/>
 
     <Button android:id="@+id/btn_four"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="删除文件夹"/>
+        android:text="删除文件夹"
+        android:textSize="20dp"
+        android:background="@color/btn_bg_color"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"/>
 
     <Button android:id="@+id/btn_create_db"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="创建数据库"/>
+        android:text="创建数据库"
+        android:textSize="20dp"
+        android:background="@color/btn_bg_color"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"/>
 
     <Button android:id="@+id/btn_delete_db"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="删除数据库"/>
+        android:text="删除数据库"
+        android:textSize="20dp"
+        android:background="@color/btn_bg_color"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/btn_write_to_file"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="文件数据写入"/>
+        android:text="文件数据写入"
+        android:textSize="20dp"
+        android:background="@color/btn_bg_color"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/btn_read_file"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="文件数据读取"/>
+        android:text="文件数据读取"
+        android:textSize="20dp"
+        android:background="@color/btn_bg_color"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"/>
 
     <Button android:id="@+id/btn_choose_file"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="打开文件选择器"/>
+        android:text="打开文件选择器"
+        android:textSize="20dp"
+        android:background="@color/btn_bg_color"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"/>
 
 
             <Button
                 android:id="@+id/btn_read_show_contacts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="读取显示手机联系人"/>
+                android:text="读取显示手机联系人"
+                android:textSize="20dp"
+                android:background="@color/btn_bg_color"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"/>
 
 
 
