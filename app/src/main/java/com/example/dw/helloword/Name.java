@@ -6,5 +6,6 @@ package com.example.dw.helloword;
 public class Name {
         String name;
         char order;
+
     }
 

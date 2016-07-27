@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.dw.helloword.ContactsActivity">
+    tools:context="com.example.dw.helloword.ContactsActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <ListView
         android:id="@+id/lv_contacts"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+      />
 
-    </ListView>
+    <com.example.dw.helloword.RightView
+        android:id="@+id/rv_one"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:clickable="true"
+        android:gravity="center"
+       />
 
-</LinearLayout>
+
+
+</FrameLayout>

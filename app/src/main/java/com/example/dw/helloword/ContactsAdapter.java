@@ -26,10 +26,11 @@ public class ContactsAdapter extends BaseAdapter {
     private static final int TYPE_ITEM=0;
     private static final int TYPE_DIVIDER=1;
 
-    public ContactsAdapter(Context context,List<Name> listName,List<String> listNumber){
-        this.context=context;
-        this.listName=listName;
-        this.listNumber=listNumber;
+    public ContactsAdapter(Context context,List<Name> listName,List<String> listNumber) {
+        this.context = context;
+        this.listName = listName;
+        this.listNumber = listNumber;
+
 
     }
 
@@ -50,6 +51,7 @@ public class ContactsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         MyViewHolder holder=null;
         int type = getItemViewType(position);
         if (type == TYPE_ITEM) {
@@ -69,15 +71,16 @@ public class ContactsAdapter extends BaseAdapter {
             }else{
                     convertView=LayoutInflater.from(context).inflate(R.layout.gray_view_divider,null);
             TextView tvSortOrder=(TextView)convertView.findViewById(R.id.tv_letter_sort_order);
+
             String str;
             if(listName.get(position).order!=1000) {
-                 str = listName.get(position).order + "";
+                str = listName.get(position).order + "";
             }
+
             else{
                  str="#";
             }
                 tvSortOrder.setText(str);
-
         }
 
         return convertView;
