@@ -33,8 +33,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     private Button mBtnReadAndShowContacts;
 
     private TextView mTvResult;
-
-    private String name;
+    private String name="great";
 
 
     @Override
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     BufferedReader bufferedReader = new BufferedReader(reader);
                     StringBuilder str = new StringBuilder();
                     str.append(bufferedReader.readLine().toString());
-                    mTvResult.setText(str);
+                    mTvResult.setText("从good.txt文件中读取数据为："+str);
                 }catch (IOException exception){}
             }
         });
@@ -99,26 +98,33 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
 
                 final String[] items = {"文件", "文档", "图片", "音乐"};
-                AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).setTitle("请选择文件类型").setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+                AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).setTitle("请选择文件类型").setSingleChoiceItems(items,0, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent=new Intent(Intent.ACTION_GET_CONTENT);
                                 Intent it;
                                 switch(which){
-                                    case 0:break;
+                                    case 0:
+                                        intent.setType("*/*");
+                                        it=Intent.createChooser(intent,"文件选择");
+                                        startActivityForResult(it,1102);
+                                        dialog.dismiss();
+                                        break;
                                     case 1:
                                         intent.setType("text/*");
-                                        it=Intent.createChooser(intent,"文件包选择");
+                                        it=Intent.createChooser(intent,"文档选择");
                                         startActivityForResult(it,1102);
                                         dialog.dismiss();
+                                        break;
                                     case 2:
                                         intent.setType("image/*");
-                                        it=Intent.createChooser(intent,"文件包选择");
+                                        it=Intent.createChooser(intent,"图片选择");
                                         startActivityForResult(it,1102);
                                         dialog.dismiss();
+                                        break;
                                     case 3:
                                         intent.setType("audio/mp3");
-                                        it=Intent.createChooser(intent,"文件包选择");
+                                        it=Intent.createChooser(intent,"音乐选择");
                                         startActivityForResult(it,1102);
                                         dialog.dismiss();
                                         break;
@@ -159,70 +165,18 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     public void onClick(View v) {
         int id = v.getId();
         SQLiteDatabase db = null;
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-
-            File file = Environment.getExternalStorageDirectory();
-            String path = file.getAbsolutePath();
-
-            File[] files = file.listFiles();
-            int n = files.length;
-            for (int i = 0; i < n; i++) {
-                System.out.println(files[i].getName());
-            }
-
             switch (id) {
                 case R.id.btn_one:
-                    showDialog("请输入要创建的文件名");
-                    String pathname = path + File.separator +name+ ".txt";
-                    System.out.println(pathname);
-                    File newFile = new File(pathname);
-                    try {
-                        boolean is = newFile.createNewFile();
-                        if (is) {
-                           showToast("创建成功");
-                        } else {
-                          showToast("创建失败");
-                        }
-                    } catch (IOException exception) {
-                        System.out.println("exception!");
-                    }
+                    showDialog(id,"请输入要创建的文件名");
                     break;
                 case R.id.btn_two:
-                    showDialog("请输入要创建的文件夹");
-                    File newDir = new File(path, name);
-                    boolean is = newDir.mkdir();
-                    if (is) {
-                       showDialog("创建成功");
-                    } else {
-                        showToast("创建失败");
-                    }
+                    showDialog(id,"请输入要创建的文件夹");
                     break;
                 case R.id.btn_three:
-                    showDialog("请输入要删除的文件");
-                    File delfile = new File(path, name+".txt");
-                    if (delfile.exists()) {
-                        boolean ifdel=delfile.delete();
-                        if(ifdel){
-                            showToast("删除成功");
-                        }
-                    } else {
-                        showToast("文件不存在");
-                    }
-                    break;
-
+                    showDialog(id,"请输入要删除的文件");
                 case R.id.btn_four:
-                    showDialog("请输入要删除的文件夹");
-                    File delDir = new File(path, name);
-                    if (delDir.exists()) {
-                        boolean isdel=delDir.delete();
-                        if(isdel){
-                            showToast("删除成功");
-                        }
-                    } else {
-                        showToast("文件夹不存在");
-                    }
+                    showDialog(id,"请输入要删除的文件夹");
                     break;
-
                 case R.id.btn_create_db:
                     db = openOrCreateDatabase("lhc.db", MODE_PRIVATE, null);
                     String createTable = "create table if not exists one (name varchar,age int) ";
@@ -239,10 +193,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     break;
                 default:
             }
-        }
     }
 
-    void showDialog(String str){
+    void showDialog(int id,String str){
+        final int ViewId=id;
         final AlertDialog dialog=new AlertDialog.Builder(this).create();
         View view= LayoutInflater.from(this).inflate(R.layout.input_dialog,null);
         TextView tvTip=(TextView)view.findViewById(R.id.tv_tips);
@@ -265,7 +219,72 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             @Override
             public void onClick(View v) {
                 name=edtName.getText().toString();
-                dialog.dismiss();
+                if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+
+                    File file = Environment.getExternalStorageDirectory();
+                    String path = file.getAbsolutePath();
+/*
+                    File[] files = file.listFiles();
+                    int n = files.length;
+                    for (int i = 0; i < n; i++) {
+                        System.out.println(files[i].getName());
+                    }
+                    */
+                switch (ViewId){
+                    case R.id.btn_one:
+                        String pathname = path + File.separator +name+ ".txt";
+                        System.out.println(pathname);
+                        File newFile = new File(pathname);
+                        try {
+                            boolean is = newFile.createNewFile();
+                            if (is) {
+                                showToast("创建成功");
+                            } else {
+                                showToast("创建失败");
+                            }
+                        } catch (IOException exception) {
+                            System.out.println("exception!");
+                        }
+                        break;
+                    case R.id.btn_two:
+                        File newDir = new File(path, name);
+                        boolean is = newDir.mkdir();
+                        if (is) {
+                            showToast("创建成功");
+                        } else {
+                            showToast("创建失败");
+                        }
+                        break;
+                    case R.id.btn_three:
+                        File delfile = new File(path, name+".txt");
+                        if (delfile.exists()) {
+                            boolean ifdel=delfile.delete();
+                            if(ifdel){
+                                showToast("删除成功");
+                            }
+                        } else {
+                            showToast("文件不存在");
+                        }
+                        break;
+
+                    case R.id.btn_four:
+                        File delDir = new File(path, name);
+                        if (delDir.exists()) {
+                            boolean isdel=delDir.delete();
+                            if(isdel){
+                                showToast("删除成功");
+                            }
+                        } else {
+                            showToast("文件夹不存在");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                    dialog.dismiss();
+
+                }
+
             }
         });
     }
